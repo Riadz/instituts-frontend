@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
     "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
     "lib": [
       "esnext",
       "dom"
     ],
+    "noImplicitAny": false,
+    // 
+    "moduleResolution": "node",
+    "baseUrl": "src",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./*"
       ]
     },
   },
