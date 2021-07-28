@@ -10,4 +10,4 @@ import '@/styles/main.scss';
 
 const app = createApp(App).use(Router).use(PrimeVue);
 
-app.mount('#app');
+app.mount('body');

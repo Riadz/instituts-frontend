@@ -10,8 +10,6 @@ import BaseLayout from '@/views/layouts/BaseLayout.vue';
 
 export default defineComponent({
   setup() {},
-  components: {
-    BaseLayout,
-  },
+  components: { BaseLayout },
 });
 </script>
