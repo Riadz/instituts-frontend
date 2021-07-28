@@ -1,0 +1,27 @@
+$fonts: ('Lato', 'Merriweather');
+$weights: (400, 700, 900);
+
+@each $font in $fonts {
+  @each $weight in $weights {
+    @font-face {
+      font-family: $font;
+      font-weight: $weight;
+      font-style: normal;
+      src: url("@/assets/fonts/#{$font}-#{$weight}.ttf") format("truetype");
+    }
+  }
+
+  .ff-#{to-lower-case($font)} {
+    font-family: $font;
+  }
+}
+@each $weight in $weights {
+  .fw-#{$weight} {
+    font-weight: $weight;
+  }
+}
+@for $i from 8 to 81 {
+  .f-#{$i} {
+    font-size: #{$i}px;
+  }
+}
