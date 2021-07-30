@@ -1,20 +1,18 @@
 <template>
-  <base-layout>
-    <div class="wrapper">Dashboard here :D</div>
-    <span>{{ userStore.accessToken }}</span>
+  <base-layout mainClass="dashboard">
+    <!--  -->
+    <template v-slot:sidebar>
+      <dashboard-sidebar />
+    </template>
   </base-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import BaseLayout from '@/views/layouts/BaseLayout.vue';
-
-//
-import Password from 'primevue/Password';
-import InputText from 'primevue/InputText';
-import Button from 'primevue/Button';
-import Message from 'primevue/Message';
 import { useUserStore } from '@/stores/user';
+import BaseLayout from '@/views/layouts/BaseLayout.vue';
+import DashboardSidebar from '@/views/components/DashboardSidebar.vue';
+//
 
 export default defineComponent({
   setup() {
@@ -26,16 +24,11 @@ export default defineComponent({
   },
   components: {
     BaseLayout,
-    Password,
-    InputText,
-    Button,
-    Message,
+    DashboardSidebar,
+    //
   },
 });
 </script>
 
 <style lang="scss" scoped>
-</style>
-
-<style>
 </style>
