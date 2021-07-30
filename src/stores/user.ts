@@ -5,26 +5,38 @@ export const useUserStore = defineStore({
   id: 'userStore',
   state: (): StoreUser => ({
     authenticated: false,
-    authToken: '',
+    accessToken: '',
+    //
+    loading: false,
   }),
   actions: {
     async login(email: string, password: string) {
+      this.loading = true;
       let res = await login(email, password);
+      this.loading = false;
 
-      if (!res.success) return false;
+      if (res.success) {
+        this.authenticated = true;
+        this.accessToken = res.data.accessToken;
+      }
 
-      this.authenticated = true;
-      this.authToken = res.data.authToken;
-      return true;
+      return res;
     },
   },
   persist: {
-    strategies: [{ storage: localStorage }],
     enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+        paths: ['authenticated', 'accessToken'],
+      },
+    ],
   },
 });
 
 interface StoreUser {
   authenticated: boolean;
-  authToken: string;
+  accessToken: string;
+  //
+  loading: boolean;
 }

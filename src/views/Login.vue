@@ -1,5 +1,5 @@
 <template>
-  <base-layout>
+  <base-layout mainClass="login">
     <div class="wrapper">
       <form
         @submit.prevent="handleSubmit(!v$.$invalid)"
@@ -28,10 +28,17 @@
           />
         </div>
 
+        <Message v-if="errorMsg" severity="error" :closable="false">
+          {{ errorMsg }}
+        </Message>
+
         <Button
-          type="submit"
           label="Se connecter"
+          type="submit"
           class="p-button-rounded p-mt-6"
+          iconPos="right"
+          :icon="userStore.loading ? 'pi pi-spin pi-spinner' : ''"
+          :disabled="userStore.loading"
         />
       </form>
     </div>
@@ -39,21 +46,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { email, required } from '@vuelidate/validators';
 import { useUserStore } from '@/stores/user';
 import BaseLayout from '@/views/layouts/BaseLayout.vue';
 //
-//
 import Password from 'primevue/Password';
 import InputText from 'primevue/InputText';
 import Button from 'primevue/Button';
-import { login } from '@/services/auth';
+import Message from 'primevue/Message';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   setup() {
+    const router = useRouter();
     const userStore = useUserStore();
+    let errorMsg = ref('');
 
     let creds = reactive({
       email: '',
@@ -68,19 +77,38 @@ export default defineComponent({
     );
 
     async function handleSubmit(valid: boolean) {
-      if (!valid) return;
+      errorMsg.value = '';
 
-      let res = await login(creds.email, creds.password);
-      console.log(res);
+      if (!valid) {
+        v$.value.$validate();
+        return;
+      }
+
+      let res = await userStore.login(creds.email, creds.password);
+
+      if (!res.success) {
+        console.log(res.data);
+        errorMsg.value = res.data.message;
+        return;
+      }
+
+      router.push({ name: 'dashboard' });
     }
 
     return {
       userStore,
-      handleSubmit,
       v$,
+      errorMsg,
+      handleSubmit,
     };
   },
-  components: { BaseLayout, Password, InputText, Button },
+  components: {
+    BaseLayout,
+    Password,
+    InputText,
+    Button,
+    Message,
+  },
 });
 </script>
 
@@ -96,10 +124,14 @@ export default defineComponent({
   box-shadow: 0 0 10px rgba(#000, 0.2);
   background-color: #fff;
 }
+
+::v-deep(.p-message-wrapper) {
+  padding: 0.5rem !important;
+}
 </style>
 
-<style lang="scss">
-body {
+<style>
+main.login {
   background: linear-gradient(var(--blue-300), var(--cyan-700));
 }
 </style>

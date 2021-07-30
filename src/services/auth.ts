@@ -5,21 +5,23 @@ export async function login(
   email: string,
   password: string
 ): Promise<loginRes> {
-  let res = await req.post(`${settings.apiUrl}/`, {
-    email: email,
-    password: password,
-  });
+  let res;
+  try {
+    res = await req.post(`${settings.apiUrl}/login`, {
+      email: email,
+      password: password,
+    });
 
-  if (res.status != 200)
+    return {
+      success: true,
+      data: res.data,
+    };
+  } catch (error) {
     return {
       success: false,
-      data: null,
+      data: error.response.data,
     };
-
-  return {
-    success: true,
-    data: res.data,
-  };
+  }
 }
 
 interface loginRes {
