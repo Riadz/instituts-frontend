@@ -42,34 +42,40 @@
 <script>
 import Button from 'primevue/Button';
 import Menu from 'primevue/Menu';
+import { useRouter } from 'vue-router';
 export default {
   components: {
     Button,
     Menu,
   },
-  data: () => ({
-    items: [
+  setup() {
+    let router = useRouter();
+    let pushNamed = (name) => router.push({ name });
+
+    let items = [
       {
         label: 'Dashboard',
         icon: 'pi pi-fw pi-home',
-        to: '/dashboard',
+        command: () => pushNamed('dashboard'),
       },
       {
         label: 'Requests',
         icon: 'pi pi-fw pi-send',
-        to: '/dashboard/requests',
+        command: () => pushNamed('dashboard:requests'),
       },
       {
         label: 'Data',
         icon: 'pi pi-fw pi-table',
-        to: '/dashboard/data',
+        command: () => pushNamed('dashboard:data'),
       },
       {
         label: 'Analytics',
         icon: 'pi pi-fw pi-chart-bar',
-        to: '/dashboard/analytics',
+        command: () => pushNamed('dashboard:analytics'),
       },
-    ],
-  }),
+    ];
+
+    return { items };
+  },
 };
 </script>
