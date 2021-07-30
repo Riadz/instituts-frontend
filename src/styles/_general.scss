@@ -17,8 +17,34 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  
+
   > main {
     flex-grow: 1;
+  }
+}
+
+// body grid
+body {
+  display: grid;
+
+  grid-template-areas:
+    'header header'
+    'sidebar main'
+    'footer footer';
+
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  > header {
+    grid-area: header;
+  }
+  > aside {
+    grid-area: sidebar;
+  }
+  > main {
+    grid-area: main;
+  }
+  > footer {
+    grid-area: footer;
   }
 }

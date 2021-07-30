@@ -2,6 +2,9 @@
   <header>
     <slot name="header"></slot>
   </header>
+  <aside>
+    <slot name="sidebar"></slot>
+  </aside>
   <main :class="mainClass">
     <slot></slot>
   </main>
