@@ -14,4 +14,4 @@ import '@/styles/main.scss';
 //
 const app = createApp(App).use(Store).use(Router).use(PrimeVue);
 
-app.mount('body');
+app.mount('#app');
