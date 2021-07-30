@@ -36,8 +36,7 @@
           label="Se connecter"
           type="submit"
           class="p-button-rounded p-mt-6"
-          iconPos="right"
-          :icon="userStore.loading ? 'pi pi-spin pi-spinner' : ''"
+          :loading="userStore.loading"
           :disabled="userStore.loading"
         />
       </form>
