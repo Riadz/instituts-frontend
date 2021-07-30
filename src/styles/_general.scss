@@ -5,6 +5,9 @@
 }
 
 :root {
+  --primary: var(--blue-300);
+  --secondary: var(--cyan-700);
+
   font-size: 16px;
   font-weight: 400;
   font-family: 'Lato', 'Segoe UI', sans-serif;
