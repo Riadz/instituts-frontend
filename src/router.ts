@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from './stores/user';
 //
 import Index from '@/views/Index.vue';
-import Login from '@/views/Login.vue';
 import DashboardHome from '@/views/DashboardHome.vue';
 
 const router = createRouter({
@@ -12,7 +11,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: () => import('@/views/Login.vue'),
       meta: {
         auth: false,
       },
@@ -27,6 +26,30 @@ const router = createRouter({
         auth: true,
       },
     },
+    {
+      path: '/dashboard/requests',
+      name: 'dashboard:requests',
+      component: () => import('@/views/DashboardRequests.vue'),
+      meta: {
+        auth: true,
+      },
+    },
+    {
+      path: '/dashboard/data',
+      name: 'dashboard:data',
+      component: () => import('@/views/DashboardData.vue'),
+      meta: {
+        auth: true,
+      },
+    },
+    {
+      path: '/dashboard/analytics',
+      name: 'dashboard:analytics',
+      component: () => import('@/views/DashboardAnalytics.vue'),
+      meta: {
+        auth: true,
+      },
+    },
   ],
 });
 
@@ -36,9 +59,11 @@ router.beforeEach((to, from, next) => {
 
   if (!userStore.authenticated && to.meta.auth) {
     next({ name: 'login' });
+    return;
   }
   if (userStore.authenticated && to.meta.auth === false) {
     next({ name: 'dashboard' });
+    return;
   }
 
   //
