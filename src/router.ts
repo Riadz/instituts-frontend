@@ -35,6 +35,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/dashboard/institutes',
+      name: 'dashboard:institutes',
+      component: () => import('@/views/DashboardInstitutes.vue'),
+      meta: {
+        auth: true,
+      },
+    },
+    {
       path: '/dashboard/data',
       name: 'dashboard:data',
       component: () => import('@/views/DashboardData.vue'),
