@@ -64,6 +64,11 @@ export default {
         command: () => pushNamed('dashboard:requests'),
       },
       {
+        label: 'Institutes',
+        icon: 'pi pi-fw pi-book',
+        command: () => pushNamed('dashboard:institutes'),
+      },
+      {
         label: 'Data',
         icon: 'pi pi-fw pi-table',
         command: () => pushNamed('dashboard:data'),
