@@ -1,5 +1,5 @@
 import req from '@/services/req';
-import settings from '@/settings';
+import settings from '@/setting';
 
 export async function login(
   email: string,
