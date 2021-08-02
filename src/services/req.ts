@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-let authToken = localStorage.getItem('authToken');
-let authHeader = authToken && `Bearer ${authToken}`;
+let authHeader = '';
+
+let userStoreJson = localStorage.getItem('userStore');
+if (userStoreJson) {
+  let userStoreData = JSON.parse(userStoreJson);
+  if (userStoreData.authenticated)
+    authHeader = `Bearer ${userStoreData.accessToken}`;
+}
 
 const req = axios.create({
   headers: {
