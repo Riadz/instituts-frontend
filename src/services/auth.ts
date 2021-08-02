@@ -1,5 +1,5 @@
+import config from '@/config';
 import req from '@/services/req';
-import settings from '@/setting';
 
 export async function login(
   email: string,
@@ -7,7 +7,7 @@ export async function login(
 ): Promise<loginRes> {
   let res;
   try {
-    res = await req.post(`${settings.apiUrl}/login`, {
+    res = await req.post(`${config.apiUrl}/login`, {
       email: email,
       password: password,
     });

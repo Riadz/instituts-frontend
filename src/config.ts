@@ -1,5 +1,5 @@
-const setting = {
+const config = {
   apiUrl: String(import.meta.env.VITE_API_URL),
 };
 
-export default setting;
+export default config;
