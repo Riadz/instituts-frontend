@@ -1,5 +1,5 @@
 <template>
-  <base-layout mainClass="dashboard">
+  <base-layout :mainClass="class">
     <slot />
     <!--  -->
     <template v-slot:sidebar>
@@ -16,6 +16,7 @@ import DashboardSidebar from '@/views/components/DashboardSidebar.vue';
 //
 
 export default defineComponent({
+  props: ['class'],
   setup() {
     const userStore = useUserStore();
 
