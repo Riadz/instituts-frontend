@@ -1,5 +1,6 @@
 import config from '@/config';
 import req from '@/services/req';
+import CountryState from '@/services/models/CountryState';
 
 class Institute {
   constructor(
@@ -9,8 +10,9 @@ class Institute {
     public emails: Array<string>,
     public numbers: Array<string>,
     public country_state_id: number,
-    public created_at: string,
-    public updated_at: string,
+    public country_state: CountryState,
+    public created_at: Date,
+    public updated_at: Date,
     public pin_code?: string
   ) {}
 
@@ -22,8 +24,9 @@ class Institute {
       data['emails'],
       data['numbers'],
       data['country_state_id'],
-      data['created_at'],
-      data['updated_at'],
+      CountryState.fromJson(data['country_state']),
+      new Date(data['created_at']),
+      new Date(data['updated_at']),
       data['pin_code']
     );
   }
