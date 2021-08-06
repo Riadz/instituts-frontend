@@ -27,6 +27,15 @@ class CountryState {
       this.fromJson(data)
     );
   }
+
+  static async all() {
+    try {
+      let res = await req.get(`${config.apiUrl}/country_state`);
+      return this.fromJsonArray(res.data.reverse());
+    } catch (error) {
+      throw new Error('country_state all error: ' + error);
+    }
+  }
 }
 
 export default CountryState;
