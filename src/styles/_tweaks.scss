@@ -1,0 +1,9 @@
+.p-chips .p-chips-multiple-container {
+  padding: 0.75rem;
+  > .p-chips-token {
+    margin: 0 0 0.5rem 0;
+    &:not(:nth-last-child(2)) {
+      margin-right: 0.5rem;
+    }
+  }
+}
