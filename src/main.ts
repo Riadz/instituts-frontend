@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import PrimeVue from 'primevue/config';
+import PrimeVueConf from 'primevue/confirmationservice';
 import App from '@/App.vue';
 import Store from '@/store';
 import Router from '@/router';
@@ -12,6 +13,10 @@ import 'primeflex/primeflex.css';
 import '@/styles/main.scss';
 
 //
-const app = createApp(App).use(Store).use(Router).use(PrimeVue);
+const app = createApp(App)
+  .use(Store)
+  .use(Router)
+  .use(PrimeVue)
+  .use(PrimeVueConf);
 
 app.mount('#app');
