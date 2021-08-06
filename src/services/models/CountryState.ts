@@ -11,6 +11,10 @@ class CountryState {
     public updated_at: Date
   ) {}
 
+  static empty() {
+    return new this(0, 0, '', '', new Date(), new Date());
+  }
+
   static fromJson(data: any) {
     return new this(
       data['id'],

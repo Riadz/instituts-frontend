@@ -16,6 +16,20 @@ class Institute {
     public pin_code?: string
   ) {}
 
+  static empty() {
+    return new this(
+      0,
+      '',
+      '',
+      [],
+      [],
+      0,
+      CountryState.empty(),
+      new Date(),
+      new Date()
+    );
+  }
+
   static fromJson(data: any) {
     return new this(
       data['id'],
