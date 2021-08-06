@@ -1,9 +1,11 @@
+.p-flex-grow {
+  flex-grow: 1 !important;
+}
+
 .p-chips .p-chips-multiple-container {
+  align-content: flex-start;
   padding: 0.75rem;
-  > .p-chips-token {
-    margin: 0 0 0.5rem 0;
-    &:not(:nth-last-child(2)) {
-      margin-right: 0.5rem;
-    }
+  > li {
+    margin: 0 0.5rem 0.5rem 0;
   }
 }
