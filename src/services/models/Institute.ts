@@ -43,6 +43,24 @@ class Institute {
       throw new Error('institute all error: ' + error);
     }
   }
+
+  static async patch(id: number, data) {
+    try {
+      let res = await req.patch(`${config.apiUrl}/institute/${id}`, data);
+      return Institute.fromJson(res.data);
+    } catch (error) {
+      throw new Error('institute patch error: ' + error);
+    }
+  }
+
+  static async delete(id: number) {
+    try {
+      await req.delete(`${config.apiUrl}/institute/${id}`);
+      return true;
+    } catch (error) {
+      throw new Error('institute delete error: ' + error);
+    }
+  }
 }
 
 export default Institute;
