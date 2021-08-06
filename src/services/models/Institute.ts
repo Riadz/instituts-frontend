@@ -58,6 +58,15 @@ class Institute {
     }
   }
 
+  static async create(data) {
+    try {
+      let res = await req.post(`${config.apiUrl}/institute`, data);
+      return Institute.fromJson(res.data);
+    } catch (error) {
+      throw new Error('institute create error: ' + error);
+    }
+  }
+
   static async patch(id: number, data) {
     try {
       let res = await req.patch(`${config.apiUrl}/institute/${id}`, data);
