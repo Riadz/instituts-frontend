@@ -17,7 +17,8 @@
     "primevue": "^3.5.1",
     "vee-validate": "^4.4.9",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.10",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/node": "^16.4.2",
