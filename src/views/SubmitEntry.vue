@@ -143,12 +143,16 @@
           </Field>
         </div>
 
+        <Message v-if="errorMsg" severity="error" :closable="false">
+          {{ errorMsg }}
+        </Message>
+
         <Button
           label="Soumettre"
           type="submit"
           class="p-button-rounded p-mt-3"
-          :loading="userStore.loading"
-          :disabled="userStore.loading"
+          :loading="loading"
+          :disabled="loading"
         />
       </Form>
     </div>
@@ -173,6 +177,7 @@ import Textarea from 'primevue/Textarea';
 import Button from 'primevue/Button';
 import Message from 'primevue/Message';
 import Dropdown from 'primevue/Dropdown';
+import Entry from '@/services/models/Entry';
 
 export default defineComponent({
   components: {
@@ -192,6 +197,7 @@ export default defineComponent({
     const router = useRouter();
     const userStore = useUserStore();
     let errorMsg = ref('');
+    let loading = ref(false);
 
     //
     let data = {
@@ -242,18 +248,16 @@ export default defineComponent({
     }
 
     async function handleSubmit(values: Object) {
-      console.log(values);
-      return;
-
       errorMsg.value = '';
+      loading.value = true;
 
-      // let res = await userStore.login(creds.email, creds.password);
+      let res = await Entry.create(values);
 
-      // if (!res.success) {
-      //   console.log(res.data);
-      //   errorMsg.value = res.data.message;
-      //   return;
-      // }
+      if (!res.success) {
+        errorMsg.value = res.data.message;
+        loading.value = false;
+        return;
+      }
 
       // router.push({ name: 'dashboard' });
     }
@@ -264,6 +268,7 @@ export default defineComponent({
       fields,
       schema,
       errorMsg,
+      loading,
       deleteEntry,
       addEntry,
       handleSubmit,
