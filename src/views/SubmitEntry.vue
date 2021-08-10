@@ -130,7 +130,17 @@
 
         <div class="p-field">
           <label>Commentaire</label>
-          <Textarea placeholder="..." style="min-height: 100px" autoResize />
+          <Field name="comment" v-slot="{ field, errorMessage }">
+            <Textarea
+              v-bind="field"
+              placeholder="..."
+              style="min-height: 100px"
+              autoResize
+            />
+            <small class="p-error">
+              {{ errorMessage }}
+            </small>
+          </Field>
         </div>
 
         <Button
@@ -197,7 +207,7 @@ export default defineComponent({
     //
     let schema = object().shape({
       pin_code: string().required().label('Code de security'),
-      comment: string().required().label('Commontaire'),
+      comment: string().label('Commentaire'),
       entries: array().of(
         object().shape({
           branch_code: string().required().label('Code de branch'),
@@ -231,8 +241,8 @@ export default defineComponent({
       fields.entries = fields.entries.filter((entry, i) => i != index);
     }
 
-    async function handleSubmit() {
-      console.log('nice');
+    async function handleSubmit(values: Object) {
+      console.log(values);
       return;
 
       errorMsg.value = '';
