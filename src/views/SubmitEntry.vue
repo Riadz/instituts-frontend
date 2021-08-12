@@ -2,6 +2,7 @@
   <base-layout mainClass="login">
     <div class="wrapper">
       <Form
+        v-if="!submitted"
         @submit="handleSubmit"
         :validation-schema="schema"
         class="container p-fluid p-my-6 p-mx-2"
@@ -155,12 +156,34 @@
           :disabled="loading"
         />
       </Form>
+      <!--  -->
+      <div
+        v-else
+        class="
+          container
+          p-fluid p-my-6 p-mx-2 p-d-flex p-flex-column p-ai-center
+        "
+        style="width: 100%; max-width: 500px"
+      >
+        <h2>Votre entrée a été soumis</h2>
+        <div class="p-mt-6">
+          <i
+            class="pi pi-check-circle"
+            style="font-size: 10rem; color: var(--green-400)"
+          ></i>
+        </div>
+        <router-link
+          class="p-button p-button-primary p-d-inline p-button-rounded p-mt-6"
+          :to="{ name: 'index' }"
+        >
+          Retour
+        </router-link>
+      </div>
     </div>
   </base-layout>
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router';
 import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { Form, Field } from 'vee-validate';
@@ -194,10 +217,10 @@ export default defineComponent({
     Dropdown,
   },
   setup() {
-    const router = useRouter();
     const userStore = useUserStore();
     let errorMsg = ref('');
     let loading = ref(false);
+    let submitted = ref(false);
 
     //
     let data = {
@@ -235,7 +258,7 @@ export default defineComponent({
         },
       ],
     });
-    function addEntry(index: number) {
+    function addEntry() {
       fields.entries.push({
         branch_code: '',
         quantity: 0,
@@ -243,8 +266,8 @@ export default defineComponent({
         formation_id: null,
       });
     }
-    function deleteEntry(index: number) {
-      fields.entries = fields.entries.filter((entry, i) => i != index);
+    function deleteEntry(index) {
+      fields.entries.splice(index, 1);
     }
 
     async function handleSubmit(values: Object) {
@@ -259,7 +282,9 @@ export default defineComponent({
         return;
       }
 
-      // router.push({ name: 'dashboard' });
+      console.log(res);
+      loading.value = false;
+      submitted.value = true;
     }
 
     return {
@@ -269,6 +294,7 @@ export default defineComponent({
       schema,
       errorMsg,
       loading,
+      submitted,
       deleteEntry,
       addEntry,
       handleSubmit,
