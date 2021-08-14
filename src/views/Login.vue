@@ -3,11 +3,11 @@
     <div class="wrapper">
       <form
         @submit.prevent="handleSubmit(!v$.$invalid)"
-        class="container p-fluid p-mt-6"
+        class="container p-fluid mt-6"
       >
         <h2>Enter le paneux de control</h2>
         <p>{{ v$.$model }}</p>
-        <div class="p-inputgroup p-mt-6">
+        <div class="p-inputgroup mt-6">
           <span class="p-inputgroup-addon">
             <i class="pi pi-user"></i>
           </span>
@@ -17,7 +17,7 @@
             placeholder="Email"
           />
         </div>
-        <div class="p-inputgroup p-mt-4">
+        <div class="p-inputgroup mt-4">
           <span class="p-inputgroup-addon">
             <i class="pi pi-key"></i>
           </span>
@@ -35,7 +35,7 @@
         <Button
           label="Se connecter"
           type="submit"
-          class="p-button-rounded p-mt-6"
+          class="p-button-rounded mt-6"
           :loading="userStore.loading"
           :disabled="userStore.loading"
         />

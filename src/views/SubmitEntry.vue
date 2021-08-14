@@ -5,12 +5,12 @@
         v-if="!submitted"
         @submit="handleSubmit"
         :validation-schema="schema"
-        class="container p-fluid p-my-6 p-mx-2"
+        class="container p-fluid my-6 mx-2"
         style="width: 100%; max-width: 500px"
       >
         <h2>Crée une entrie</h2>
 
-        <div class="p-field p-mt-3">
+        <div class="p-field mt-3">
           <label>Code de security</label>
           <Field name="pin_code" v-slot="{ field, errorMessage }">
             <InputText v-bind="field" placeholder="VXWCS9ZR..." />
@@ -20,8 +20,8 @@
           </Field>
         </div>
 
-        <label class="block p-mb-2">
-          <span class="p-mr-2">Entries</span>
+        <label class="block mb-2">
+          <span class="mr-2">Entries</span>
           <Button
             @click="addEntry()"
             icon="pi pi-plus"
@@ -151,7 +151,7 @@
         <Button
           label="Soumettre"
           type="submit"
-          class="p-button-rounded p-mt-3"
+          class="p-button-rounded mt-3"
           :loading="loading"
           :disabled="loading"
         />
@@ -159,18 +159,18 @@
       <!--  -->
       <div
         v-else
-        class="container p-fluid p-my-6 p-mx-2 flex p-flex-column p-ai-center"
+        class="container p-fluid my-6 mx-2 flex p-flex-column p-ai-center"
         style="width: 100%; max-width: 500px"
       >
         <h2>Votre entrée a été soumis</h2>
-        <div class="p-mt-6">
+        <div class="mt-6">
           <i
             class="pi pi-check-circle"
             style="font-size: 10rem; color: var(--green-400)"
           ></i>
         </div>
         <router-link
-          class="p-button p-button-primary inline p-button-rounded p-mt-6"
+          class="p-button p-button-primary inline p-button-rounded mt-6"
           :to="{ name: 'index' }"
         >
           Retour

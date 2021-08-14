@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'login' }">
       <Button label="Se connecter" class="p-button-primary" />
     </router-link>
-    <router-link :to="{ name: 'entry' }" class="p-ml-3">
+    <router-link :to="{ name: 'entry' }" class="ml-3">
       <Button label="Crée un entrée" class="p-button-secondary" />
     </router-link>
   </base-layout>

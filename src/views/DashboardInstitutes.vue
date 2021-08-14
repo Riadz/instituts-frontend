@@ -15,19 +15,10 @@
       :loading="!institutes.length"
       :autoLayout="true"
       responsiveLayout="scroll"
-      class="p-datatable-sm mt-5"
+      class="p-datatable-sm"
       rowHover
       stripedRows
     >
-      <template #header>
-        <div class="flex p-jc-between p-ai-center">
-          <h5 class="m-0">Institutes</h5>
-          <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <InputText placeholder="Research" />
-          </span>
-        </div>
-      </template>
       <template #empty>Aucun Institute trouvée</template>
       <template #loading>Chargement en cour</template>
       <Column field="id" header="ID"></Column>
@@ -80,17 +71,9 @@
         <div class="p-field p-col">
           <label>Type</label>
           <div class="p-2">
-            <RadioButton
-              v-model="dialogData.type"
-              value="INSFP"
-              class="p-mr-2"
-            />
-            <label class="p-mr-3">INSFP</label>
-            <RadioButton
-              v-model="dialogData.type"
-              value="CFPA"
-              class="p-mr-2"
-            />
+            <RadioButton v-model="dialogData.type" value="INSFP" class="mr-2" />
+            <label class="mr-3">INSFP</label>
+            <RadioButton v-model="dialogData.type" value="CFPA" class="mr-2" />
             <label>CFPA</label>
           </div>
         </div>
@@ -146,7 +129,7 @@
           <Button
             label="Sauvgarder"
             icon="pi pi-check"
-            class="p-button-text p-ml-auto"
+            class="p-button-text ml-auto"
             @click="
               if (dialogFlag == 'add') {
                 createInstitute(dialogData);
