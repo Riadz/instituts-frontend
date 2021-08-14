@@ -159,7 +159,7 @@
       <!--  -->
       <div
         v-else
-        class="container p-fluid my-6 mx-2 flex p-flex-column p-ai-center"
+        class="container p-fluid my-6 mx-2 flex flex-column p-ai-center"
         style="width: 100%; max-width: 500px"
       >
         <h2>Votre entrée a été soumis</h2>

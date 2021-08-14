@@ -95,11 +95,11 @@
         </Dropdown>
       </div>
       <div class="p-formgrid grid">
-        <div class="field col flex p-flex-column">
+        <div class="field col flex flex-column">
           <label>Emails</label>
           <Chips v-model="dialogData.emails" class="p-flex-grow" addOnBlur />
         </div>
-        <div class="field col flex p-flex-column">
+        <div class="field col flex flex-column">
           <label>Numeros</label>
           <Chips v-model="dialogData.numbers" class="p-flex-grow" addOnBlur />
         </div>
