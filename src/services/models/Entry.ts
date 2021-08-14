@@ -35,7 +35,7 @@ class Entry {
       let res = await req.get(`${config.apiUrl}/entry`, {
         params: { state },
       });
-      return this.fromJsonArray(res.data.data);
+      return this.fromJsonArray(res.data);
     } catch (error) {
       throw new Error('institute all error: ' + error);
     }
@@ -56,6 +56,9 @@ class Entry {
       };
     }
   }
+
+  //
+  static states = ['pending', 'accepted', 'rejected'];
 }
 
 export default Entry;
