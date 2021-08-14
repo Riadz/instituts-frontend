@@ -62,13 +62,13 @@
         <label>Nom</label>
         <InputText v-model="dialogData.name" autofocus />
       </div>
-      <div class="p-formgrid p-grid">
-        <div class="p-field p-col">
+      <div class="p-formgrid grid">
+        <div class="p-field col">
           <label>Code de security</label>
           <InputText v-model="dialogData.pin_code" />
           <!-- <small class="p-error">Le nom est obligatoire </small> -->
         </div>
-        <div class="p-field p-col">
+        <div class="p-field col">
           <label>Type</label>
           <div class="p-2">
             <RadioButton v-model="dialogData.type" value="INSFP" class="mr-2" />
@@ -94,12 +94,12 @@
           </template>
         </Dropdown>
       </div>
-      <div class="p-formgrid p-grid">
-        <div class="p-field p-col flex p-flex-column">
+      <div class="p-formgrid grid">
+        <div class="p-field col flex p-flex-column">
           <label>Emails</label>
           <Chips v-model="dialogData.emails" class="p-flex-grow" addOnBlur />
         </div>
-        <div class="p-field p-col flex p-flex-column">
+        <div class="p-field col flex p-flex-column">
           <label>Numeros</label>
           <Chips v-model="dialogData.numbers" class="p-flex-grow" addOnBlur />
         </div>

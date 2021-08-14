@@ -38,8 +38,8 @@
                   icon="pi pi-times"
                   class="delete-entry-btn p-button-rounded p-button-danger"
                 />
-                <div class="p-formgrid p-grid">
-                  <div class="p-field p-col-6">
+                <div class="p-formgrid grid">
+                  <div class="p-field col-6">
                     <label>Code de branche</label>
                     <Field
                       :name="`entries[${entry.index}].branch_code`"
@@ -60,7 +60,7 @@
                       </small>
                     </Field>
                   </div>
-                  <div class="p-field p-col-6">
+                  <div class="p-field col-6">
                     <label>Quantity</label>
                     <Field
                       :name="`entries[${entry.index}].quantity`"
