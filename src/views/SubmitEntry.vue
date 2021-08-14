@@ -20,7 +20,7 @@
           </Field>
         </div>
 
-        <label class="p-d-block p-mb-2">
+        <label class="block p-mb-2">
           <span class="p-mr-2">Entries</span>
           <Button
             @click="addEntry()"
@@ -103,7 +103,7 @@
                     </small>
                   </Field>
                 </div>
-                <div class="p-field p-m-0">
+                <div class="p-field m-0">
                   <label>Formation</label>
                   <Field
                     :name="`entries[${entry.index}].formation_id`"
@@ -159,10 +159,7 @@
       <!--  -->
       <div
         v-else
-        class="
-          container
-          p-fluid p-my-6 p-mx-2 p-d-flex p-flex-column p-ai-center
-        "
+        class="container p-fluid p-my-6 p-mx-2 flex p-flex-column p-ai-center"
         style="width: 100%; max-width: 500px"
       >
         <h2>Votre entrée a été soumis</h2>
@@ -173,7 +170,7 @@
           ></i>
         </div>
         <router-link
-          class="p-button p-button-primary p-d-inline p-button-rounded p-mt-6"
+          class="p-button p-button-primary inline p-button-rounded p-mt-6"
           :to="{ name: 'index' }"
         >
           Retour

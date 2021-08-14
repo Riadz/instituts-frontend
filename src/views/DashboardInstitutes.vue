@@ -1,11 +1,11 @@
 <template>
-  <dashboard-layout class="p-p-4">
-    <Toolbar class="p-mb-4">
+  <dashboard-layout class="p-4">
+    <Toolbar class="mb-4">
       <template #left>
         <Button
           label="Ajouter une institute"
           icon="pi pi-plus"
-          class="p-button-success p-mr-2"
+          class="p-button-success mr-2"
           @click="openAddDialog()"
         />
       </template>
@@ -15,13 +15,13 @@
       :loading="!institutes.length"
       :autoLayout="true"
       responsiveLayout="scroll"
-      class="p-datatable-sm p-mt-5"
+      class="p-datatable-sm mt-5"
       rowHover
       stripedRows
     >
       <template #header>
-        <div class="p-d-flex p-jc-between p-ai-center">
-          <h5 class="p-m-0">Institutes</h5>
+        <div class="flex p-jc-between p-ai-center">
+          <h5 class="m-0">Institutes</h5>
           <span class="p-input-icon-left">
             <i class="pi pi-search" />
             <InputText placeholder="Research" />
@@ -59,7 +59,7 @@
       v-model:visible="dialogOpen"
       :style="{ width: '700px' }"
       :modal="true"
-      class="p-fluid p-m-2"
+      class="p-fluid m-2"
       closeOnEscape
     >
       <template #header>
@@ -79,7 +79,7 @@
         </div>
         <div class="p-field p-col">
           <label>Type</label>
-          <div class="p-p-2">
+          <div class="p-2">
             <RadioButton
               v-model="dialogData.type"
               value="INSFP"
@@ -112,11 +112,11 @@
         </Dropdown>
       </div>
       <div class="p-formgrid p-grid">
-        <div class="p-field p-col p-d-flex p-flex-column">
+        <div class="p-field p-col flex p-flex-column">
           <label>Emails</label>
           <Chips v-model="dialogData.emails" class="p-flex-grow" addOnBlur />
         </div>
-        <div class="p-field p-col p-d-flex p-flex-column">
+        <div class="p-field p-col flex p-flex-column">
           <label>Numeros</label>
           <Chips v-model="dialogData.numbers" class="p-flex-grow" addOnBlur />
         </div>
@@ -124,7 +124,7 @@
 
       <!--  -->
       <template #footer>
-        <div class="p-d-flex">
+        <div class="flex">
           <Button
             v-if="dialogFlag == 'edit'"
             label="Supprimer"
