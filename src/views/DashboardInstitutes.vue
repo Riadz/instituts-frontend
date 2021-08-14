@@ -58,17 +58,17 @@
         <span v-else-if="dialogFlag == 'edit'">Detail de l'institute</span>
       </template>
       <!--  -->
-      <div class="p-field">
+      <div class="field">
         <label>Nom</label>
         <InputText v-model="dialogData.name" autofocus />
       </div>
       <div class="p-formgrid grid">
-        <div class="p-field col">
+        <div class="field col">
           <label>Code de security</label>
           <InputText v-model="dialogData.pin_code" />
           <!-- <small class="p-error">Le nom est obligatoire </small> -->
         </div>
-        <div class="p-field col">
+        <div class="field col">
           <label>Type</label>
           <div class="p-2">
             <RadioButton v-model="dialogData.type" value="INSFP" class="mr-2" />
@@ -78,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="p-field">
+      <div class="field">
         <label>Wilaya</label>
         <Dropdown
           v-model="dialogData.country_state_id"
@@ -95,11 +95,11 @@
         </Dropdown>
       </div>
       <div class="p-formgrid grid">
-        <div class="p-field col flex p-flex-column">
+        <div class="field col flex p-flex-column">
           <label>Emails</label>
           <Chips v-model="dialogData.emails" class="p-flex-grow" addOnBlur />
         </div>
-        <div class="p-field col flex p-flex-column">
+        <div class="field col flex p-flex-column">
           <label>Numeros</label>
           <Chips v-model="dialogData.numbers" class="p-flex-grow" addOnBlur />
         </div>

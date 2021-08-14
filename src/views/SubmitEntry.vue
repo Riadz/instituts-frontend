@@ -10,7 +10,7 @@
       >
         <h2>Crée une entrie</h2>
 
-        <div class="p-field mt-3">
+        <div class="field mt-3">
           <label>Code de security</label>
           <Field name="pin_code" v-slot="{ field, errorMessage }">
             <InputText v-bind="field" placeholder="VXWCS9ZR..." />
@@ -28,7 +28,7 @@
             class="add-entry-btn p-button-rounded p-button-primary"
           />
         </label>
-        <div class="p-field carousel-container">
+        <div class="field carousel-container">
           <Carousel :value="fields.entries">
             <template #item="entry">
               <div class="p-px-25 p-pb-2" style="position: relative">
@@ -39,7 +39,7 @@
                   class="delete-entry-btn p-button-rounded p-button-danger"
                 />
                 <div class="p-formgrid grid">
-                  <div class="p-field col-6">
+                  <div class="field col-6">
                     <label>Code de branche</label>
                     <Field
                       :name="`entries[${entry.index}].branch_code`"
@@ -60,7 +60,7 @@
                       </small>
                     </Field>
                   </div>
-                  <div class="p-field col-6">
+                  <div class="field col-6">
                     <label>Quantity</label>
                     <Field
                       :name="`entries[${entry.index}].quantity`"
@@ -81,7 +81,7 @@
                     </Field>
                   </div>
                 </div>
-                <div class="p-field">
+                <div class="field">
                   <label>Specialty</label>
                   <Field
                     :name="`entries[${entry.index}].specialty_id`"
@@ -103,7 +103,7 @@
                     </small>
                   </Field>
                 </div>
-                <div class="p-field m-0">
+                <div class="field m-0">
                   <label>Formation</label>
                   <Field
                     :name="`entries[${entry.index}].formation_id`"
@@ -129,7 +129,7 @@
           </Carousel>
         </div>
 
-        <div class="p-field">
+        <div class="field">
           <label>Commentaire</label>
           <Field name="comment" v-slot="{ field, errorMessage }">
             <Textarea
