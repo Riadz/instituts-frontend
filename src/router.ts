@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from './stores/user';
 //
 import Index from '@/views/Index.vue';
-import DashboardHome from '@/views/DashboardHome.vue';
+// import DashboardHome from '@/views/DashboardHome.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,10 +28,11 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: DashboardHome,
+      // component: DashboardHome,
       meta: {
         auth: true,
       },
+      redirect: { name: 'dashboard:requests' },
     },
     {
       path: '/dashboard/requests',
