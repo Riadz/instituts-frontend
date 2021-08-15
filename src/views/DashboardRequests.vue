@@ -2,17 +2,12 @@
   <dashboard-layout class="p-4">
     <Toolbar class="mb-4">
       <template #left>
-        <Button
-          label="Ajouter une institute"
-          icon="pi pi-plus"
-          class="p-button-success mr-2"
-          @click=""
-        />
+        <Dropdown v-model="currentState" :options="states" />
       </template>
     </Toolbar>
     <DataTable
       :value="entries"
-      :loading="!entries.length"
+      :loading="entries == null"
       :autoLayout="true"
       responsiveLayout="scroll"
       class="p-datatable-sm mt-5"
@@ -32,9 +27,9 @@
         </template>
       </Column>
       <Column field="comment" header="Commontaire"></Column>
-      <Column header="Date modification">
+      <Column header="Date Création">
         <template #body="item">
-          <span>{{ item.data.updated_at.toLocaleString() }}</span>
+          <span>{{ item.data.created_at.toLocaleString() }}</span>
         </template>
       </Column>
       <Column header="État">
@@ -100,7 +95,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 py-0 opacity-20">
+        <div class="col-12 py-0 opacity-20" v-if="modalData?.comment">
           <hr />
         </div>
         <div class="col-12" v-if="modalData?.comment">
@@ -119,19 +114,41 @@
       </div>
 
       <!--  -->
-      <template #footer>
+      <template #footer v-if="currentState == 'pending'">
         <div class="flex justify-content-end">
           <Button
             label="Rejeter"
             icon="pi pi-times"
             class="p-button-text p-button-danger"
-            @click=""
+            @click="
+              (e) =>
+                confirm.require({
+                  target: e.currentTarget,
+                  message: 'Êtes-vous sure',
+                  acceptLabel: 'Oui',
+                  rejectLabel: 'Non',
+                  acceptClass: 'p-button-danger',
+                  icon: 'pi pi-exclamation-triangle',
+                  accept: () => updateRequest(modalData?.id, 'rejected'),
+                })
+            "
           />
           <Button
             label="Accepter"
             icon="pi pi-check"
             class="p-button-text p-button-success"
-            @click=""
+            @click="
+              (e) =>
+                confirm.require({
+                  target: e.currentTarget,
+                  message: 'Êtes-vous sure',
+                  acceptLabel: 'Oui',
+                  rejectLabel: 'Non',
+                  acceptClass: 'p-button-success',
+                  icon: 'pi pi-exclamation-triangle',
+                  accept: () => updateRequest(modalData?.id, 'accepted'),
+                })
+            "
           />
         </div>
       </template>
@@ -143,7 +160,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, watchEffect } from 'vue';
 import DashboardLayout from '@/views/layouts/DashboardLayout.vue';
 import Entry from '@/services/models/Entry';
 //
@@ -182,12 +199,18 @@ export default defineComponent({
   },
   setup() {
     const confirm = useConfirm();
+    const states = Entry.states;
+
+    let currentState = ref('pending');
 
     //
-    let entries = ref<Entry[]>([]);
-    onMounted(async () => {
-      entries.value = await Entry.all();
-    });
+    let entries = ref<Entry[] | null>(null);
+    onMounted(fetchEntries);
+    watchEffect(fetchEntries);
+    async function fetchEntries() {
+      entries.value = null;
+      entries.value = await Entry.all(currentState.value);
+    }
 
     //
     let modal = {
@@ -202,11 +225,26 @@ export default defineComponent({
       },
     };
 
+    async function updateRequest(id: number, state: string) {
+      let res = await Entry.updateState(id, state);
+
+      if (!res.success) {
+        console.log(res.data);
+        return;
+      }
+
+      modal.modalOpen.value = false;
+      fetchEntries();
+    }
+
     return {
       confirm,
+      states,
+      currentState,
       entries,
       //
       ...modal,
+      updateRequest,
     };
   },
 });

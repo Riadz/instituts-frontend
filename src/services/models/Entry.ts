@@ -30,6 +30,7 @@ class Entry {
   static fromJsonArray(data_array: any) {
     return (data_array as Array<Entry>).map((data) => this.fromJson(data));
   }
+
   static async all(state = 'pending') {
     try {
       let res = await req.get(`${config.apiUrl}/entry`, {
@@ -40,6 +41,7 @@ class Entry {
       throw new Error('institute all error: ' + error);
     }
   }
+
   static async create(data) {
     try {
       let res = await req.post(`${config.apiUrl}/entry`, data);
@@ -55,6 +57,27 @@ class Entry {
         ...error.response,
       };
     }
+  }
+
+  static async update(id: number, data) {
+    try {
+      let res = await req.patch(`${config.apiUrl}/entry/${id}`, data);
+      return {
+        success: true,
+        ...res,
+      };
+    } catch (error) {
+      console.log(error);
+
+      return {
+        success: false,
+        ...error.response,
+      };
+    }
+  }
+
+  static async updateState(id: number, state: string) {
+    return await this.update(id, { state });
   }
 
   //
