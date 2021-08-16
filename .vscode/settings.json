@@ -1,3 +1,8 @@
 {
+  "[vue]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
+  "editor.linkedEditing": true,
+  "html.autoClosingTags": true,
   // "typescript.suggest.paths": false,
 }
