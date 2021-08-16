@@ -1,5 +1,6 @@
 import config from '@/config';
 import req from '@/services/req';
+import Entry from './Entry';
 import Formation from './Formation';
 import Specialty from './Specialty';
 
@@ -13,7 +14,8 @@ class EntryData {
     public formation_id: number,
     public formation: Formation,
     public created_at: Date,
-    public updated_at: Date
+    public updated_at: Date,
+    public entry?: Entry
   ) {}
 
   static fromJson(data: any) {
@@ -26,11 +28,21 @@ class EntryData {
       data['formation_id'],
       Formation.fromJson(data['formation']),
       new Date(data['created_at']),
-      new Date(data['updated_at'])
+      new Date(data['updated_at']),
+      data['entry'] && Entry.fromJson(data['entry'])
     );
   }
   static fromJsonArray(data_array: any) {
     return (data_array as Array<EntryData>).map((data) => this.fromJson(data));
+  }
+
+  static async table() {
+    try {
+      let res = await req.get(`${config.apiUrl}/entry_data`);
+      return this.fromJsonArray(res.data);
+    } catch (error) {
+      throw new Error('entry data table error: ' + error);
+    }
   }
 
   // prettier-ignore

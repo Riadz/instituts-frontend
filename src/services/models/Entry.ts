@@ -10,9 +10,9 @@ class Entry {
     public comment: string,
     public institute_id: number,
     public institute: Institute,
-    public data: Array<EntryData>,
     public created_at: Date,
-    public updated_at: Date
+    public updated_at: Date,
+    public data?: Array<EntryData>
   ) {}
 
   static fromJson(data: any) {
@@ -22,9 +22,9 @@ class Entry {
       data['comment'],
       data['institute_id'],
       Institute.fromJson(data['institute']),
-      EntryData.fromJsonArray(data['data']),
       new Date(data['created_at']),
-      new Date(data['updated_at'])
+      new Date(data['updated_at']),
+      data['data'] && EntryData.fromJsonArray(data['data'])
     );
   }
   static fromJsonArray(data_array: any) {
