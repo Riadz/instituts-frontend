@@ -306,7 +306,7 @@ export default defineComponent({
   position: absolute;
   right: 0;
   top: 0;
-  margin: 0 0.75rem;
+  margin: 0.75rem;
 }
 
 .px-25 {
