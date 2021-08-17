@@ -45,6 +45,17 @@ class EntryData {
     }
   }
 
+  //
+  getQuantity(formation_id: number | null = null) {
+    if (formation_id === null) {
+      return this.quantity;
+    }
+    if (this.formation_id == formation_id) {
+      return this.quantity;
+    }
+
+    return '';
+  }
   // prettier-ignore
   static branch_codes = [
     'ACP', 'AGR', 'AIG', 'ART',
