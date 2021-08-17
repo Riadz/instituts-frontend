@@ -34,18 +34,12 @@
       </Column>
       <Column header="État">
         <template #body="item">
-          <span :class="`entry-state ${item.data.state}`">
-            {{ item.data.state }}
-          </span>
+          <span :class="`entry-state ${item.data.state}`">{{ item.data.state }}</span>
         </template>
       </Column>
       <Column header="Action">
         <template #body="item">
-          <Button
-            icon="pi pi-search"
-            class="p-button-primary"
-            @click="openModal(item.data)"
-          ></Button>
+          <Button icon="pi pi-search" class="p-button-primary" @click="openModal(item.data)"></Button>
         </template>
       </Column>
     </DataTable>
@@ -64,23 +58,17 @@
       <!--  -->
       <div class="grid mt-1">
         <div class="col-3 flex flex-column align-items-center">
-          <Avatar
-            :label="modalData?.institute.name.charAt(0)"
-            size="large"
-            shape="circle"
-          />
+          <Avatar :label="modalData?.institute.name.charAt(0)" size="large" shape="circle" />
           <h2>{{ modalData?.institute.name }}</h2>
         </div>
         <div class="col-9 grid">
           <div class="col-6">
-            <span class="font-medium">Type: </span>
+            <span class="font-medium">Type:</span>
             <span>{{ modalData?.institute.type }}</span>
           </div>
           <div class="col-6">
-            <span class="font-medium">Crée le: </span>
-            <span>
-              {{ modalData?.institute.created_at.toLocaleDateString() }}
-            </span>
+            <span class="font-medium">Crée le:</span>
+            <span>{{ modalData?.institute.created_at.toLocaleDateString() }}</span>
           </div>
           <div class="col-6" v-if="modalData?.institute.emails">
             <div class="font-medium mb-2">Emails:</div>
@@ -120,35 +108,13 @@
             label="Rejeter"
             icon="pi pi-times"
             class="p-button-text p-button-danger"
-            @click="
-              (e) =>
-                confirm.require({
-                  target: e.currentTarget,
-                  message: 'Êtes-vous sure',
-                  acceptLabel: 'Oui',
-                  rejectLabel: 'Non',
-                  acceptClass: 'p-button-danger',
-                  icon: 'pi pi-exclamation-triangle',
-                  accept: () => updateRequest(modalData?.id, 'rejected'),
-                })
-            "
+            @click="(e) => rejectRequest(e, modalData?.id)"
           />
           <Button
             label="Accepter"
             icon="pi pi-check"
             class="p-button-text p-button-success"
-            @click="
-              (e) =>
-                confirm.require({
-                  target: e.currentTarget,
-                  message: 'Êtes-vous sure',
-                  acceptLabel: 'Oui',
-                  rejectLabel: 'Non',
-                  acceptClass: 'p-button-success',
-                  icon: 'pi pi-exclamation-triangle',
-                  accept: () => updateRequest(modalData?.id, 'accepted'),
-                })
-            "
+            @click="(e) => rejectRequest(e, modalData?.id)"
           />
         </div>
       </template>
@@ -225,6 +191,29 @@ export default defineComponent({
       },
     };
 
+    function rejectRequest(e, id) {
+      confirm.require({
+        target: e.currentTarget,
+        message: 'Êtes-vous sure',
+        acceptLabel: 'Oui',
+        rejectLabel: 'Non',
+        acceptClass: 'p-button-danger',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => updateRequest(id, 'rejected'),
+      })
+    }
+    function acceptRequest(e, id) {
+      confirm.require({
+        target: e.currentTarget,
+        message: 'Êtes-vous sure',
+        acceptLabel: 'Oui',
+        rejectLabel: 'Non',
+        acceptClass: 'p-button-success',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => updateRequest(id, 'accepted'),
+      })
+    }
+
     async function updateRequest(id: number, state: string) {
       let res = await Entry.updateState(id, state);
 
@@ -233,7 +222,7 @@ export default defineComponent({
         return;
       }
 
-      modal.modalOpen.value = false;
+      modal.closeModal();
       fetchEntries();
     }
 
@@ -244,6 +233,8 @@ export default defineComponent({
       entries,
       //
       ...modal,
+      rejectRequest,
+      acceptRequest,
       updateRequest,
     };
   },
