@@ -6,11 +6,11 @@ import viteComponents, { PrimeVueResolver } from 'vite-plugin-components';
 export default defineConfig({
   plugins: [
     vue(),
-    viteComponents({
-      dirs: ['src/views'],
-      globalComponentsDeclaration: true,
-      customComponentResolvers: [PrimeVueResolver()],
-    }),
+    // viteComponents({
+    //   dirs: ['src/views'],
+    //   globalComponentsDeclaration: true,
+    //   customComponentResolvers: [PrimeVueResolver()],
+    // }),
   ],
   //
   resolve: {
