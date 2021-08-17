@@ -14,9 +14,7 @@
           <label>Code de security</label>
           <Field name="pin_code" v-slot="{ field, errorMessage }">
             <InputText v-bind="field" placeholder="VXWCS9ZR..." />
-            <small class="p-error">
-              {{ errorMessage }}
-            </small>
+            <small class="p-error">{{ errorMessage }}</small>
           </Field>
         </div>
 
@@ -31,7 +29,7 @@
         <div class="field carousel-container">
           <Carousel :value="fields.entries">
             <template #item="entry">
-              <div class="p-px-25 p-pb-2" style="position: relative">
+              <div class="px-25 pb-2" style="position: relative">
                 <Button
                   v-if="fields.entries.length > 1"
                   @click="deleteEntry(entry.index)"
@@ -51,13 +49,11 @@
                         :options="branches"
                         @input="field.onInput.forEach((fn) => fn($event.value))"
                         @change="
-                          field.onChange.forEach((fn) => fn($event.value))
+                        field.onChange.forEach((fn) => fn($event.value))
                         "
                         placeholder="Selectioner"
                       />
-                      <small class="p-error">
-                        {{ errorMessage }}
-                      </small>
+                      <small class="p-error">{{ errorMessage }}</small>
                     </Field>
                   </div>
                   <div class="field col-6">
@@ -72,12 +68,10 @@
                         :min="1"
                         @input="field.onInput.forEach((fn) => fn($event.value))"
                         @change="
-                          field.onChange.forEach((fn) => fn($event.value))
+                        field.onChange.forEach((fn) => fn($event.value))
                         "
                       />
-                      <small class="p-error">
-                        {{ errorMessage }}
-                      </small>
+                      <small class="p-error">{{ errorMessage }}</small>
                     </Field>
                   </div>
                 </div>
@@ -98,9 +92,7 @@
                       @change="field.onChange.forEach((fn) => fn($event.value))"
                       filter
                     />
-                    <small class="p-error">
-                      {{ errorMessage }}
-                    </small>
+                    <small class="p-error">{{ errorMessage }}</small>
                   </Field>
                 </div>
                 <div class="field m-0">
@@ -119,9 +111,7 @@
                       @input="field.onInput.forEach((fn) => fn($event.value))"
                       @change="field.onChange.forEach((fn) => fn($event.value))"
                     />
-                    <small class="p-error">
-                      {{ errorMessage }}
-                    </small>
+                    <small class="p-error">{{ errorMessage }}</small>
                   </Field>
                 </div>
               </div>
@@ -132,21 +122,12 @@
         <div class="field">
           <label>Commentaire</label>
           <Field name="comment" v-slot="{ field, errorMessage }">
-            <Textarea
-              v-bind="field"
-              placeholder="..."
-              style="min-height: 100px"
-              autoResize
-            />
-            <small class="p-error">
-              {{ errorMessage }}
-            </small>
+            <Textarea v-bind="field" placeholder="..." style="min-height: 100px" autoResize />
+            <small class="p-error">{{ errorMessage }}</small>
           </Field>
         </div>
 
-        <Message v-if="errorMsg" severity="error" :closable="false">
-          {{ errorMsg }}
-        </Message>
+        <Message v-if="errorMsg" severity="error" :closable="false">{{ errorMsg }}</Message>
 
         <Button
           label="Soumettre"
@@ -164,17 +145,12 @@
       >
         <h2>Votre entrée a été soumis</h2>
         <div class="mt-6">
-          <i
-            class="pi pi-check-circle"
-            style="font-size: 10rem; color: var(--green-400)"
-          ></i>
+          <i class="pi pi-check-circle" style="font-size: 10rem; color: var(--green-400)"></i>
         </div>
         <router-link
           class="p-button p-button-primary inline p-button-rounded mt-6"
           :to="{ name: 'index' }"
-        >
-          Retour
-        </router-link>
+        >Retour</router-link>
       </div>
     </div>
   </base-layout>
@@ -333,7 +309,7 @@ export default defineComponent({
   margin: 0 0.75rem;
 }
 
-.p-px-25 {
+.px-25 {
   padding-right: 0.75rem !important;
   padding-left: 0.75rem !important;
 }
