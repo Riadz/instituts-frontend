@@ -114,7 +114,7 @@
             label="Accepter"
             icon="pi pi-check"
             class="p-button-text p-button-success"
-            @click="(e) => rejectRequest(e, modalData?.id)"
+            @click="(e) => acceptRequest(e, modalData?.id)"
           />
         </div>
       </template>
