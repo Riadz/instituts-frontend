@@ -6,7 +6,7 @@
       </template>
     </Toolbar>
     <DataTable
-      :value="entries"
+      :value="entries || []"
       :loading="entries == null"
       :autoLayout="true"
       responsiveLayout="scroll"

@@ -2,7 +2,7 @@
   <base-layout mainClass="login">
     <div class="wrapper">
       <Form
-        v-if="!submit  ted"
+        v-if="!submitted"
         @submit="handleSubmit"
         :validation-schema="schema"
         class="container p-fluid my-6 mx-2"

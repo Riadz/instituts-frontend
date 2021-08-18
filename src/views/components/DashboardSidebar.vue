@@ -39,7 +39,7 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import Button from 'primevue/button';
 import Menu from 'primevue/menu';
 import { useRouter } from 'vue-router';
