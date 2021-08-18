@@ -13,7 +13,7 @@
 import { defineComponent } from 'vue';
 import BaseLayout from '@/views/layouts/BaseLayout.vue';
 //
-import Button from 'primevue/Button';
+import Button from 'primevue/button';
 
 export default defineComponent({
   components: { BaseLayout, Button },

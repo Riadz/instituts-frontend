@@ -34,7 +34,7 @@
       </Column>
       <Column header="État">
         <template #body="item">
-          <span :class="`entry-state ${item.data.state}`">{{ item.data.state }}</span>
+          <span :class="`ent ry-state ${item.data.state}`">{{ item.data.state }}</span>
         </template>
       </Column>
       <Column header="Action">
@@ -131,18 +131,18 @@ import DashboardLayout from '@/views/layouts/DashboardLayout.vue';
 import Entry from '@/services/models/Entry';
 //
 import { useConfirm } from 'primevue/useconfirm';
-import Button from 'primevue/Button';
-import Toolbar from 'primevue/Toolbar';
+import Button from 'primevue/button';
+import Toolbar from 'primevue/toolbar';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ConfirmPopup from 'primevue/confirmpopup';
-import Dialog from 'primevue/Dialog';
-import InputText from 'primevue/InputText';
-import InputNumber from 'primevue/InputNumber';
-import RadioButton from 'primevue/RadioButton';
-import Textarea from 'primevue/Textarea';
-import Dropdown from 'primevue/Dropdown';
-import Chip from 'primevue/Chip';
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import RadioButton from 'primevue/radiobutton';
+import Textarea from 'primevue/textarea';
+import Dropdown from 'primevue/dropdown';
+import Chip from 'primevue/chip';
 import Avatar from 'primevue/avatar';
 
 export default defineComponent({

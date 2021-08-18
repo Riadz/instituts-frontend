@@ -1,10 +1,7 @@
 <template>
   <base-layout mainClass="login">
     <div class="wrapper">
-      <form
-        @submit.prevent="handleSubmit(!v$.$invalid)"
-        class="container p-fluid mt-6"
-      >
+      <form @submit.prevent="handleSubmit(!v$.$invalid)" class="container p-fluid mt-6">
         <h2>Enter le paneux de control</h2>
         <p>{{ v$.$model }}</p>
         <div class="p-inputgroup mt-6">
@@ -28,9 +25,7 @@
           />
         </div>
 
-        <Message v-if="errorMsg" severity="error" :closable="false">
-          {{ errorMsg }}
-        </Message>
+        <Message v-if="errorMsg" severity="error" :closable="false">{{ errorMsg }}</Message>
 
         <Button
           label="Se connecter"
@@ -51,10 +46,10 @@ import { email, required } from '@vuelidate/validators';
 import { useUserStore } from '@/stores/user';
 import BaseLayout from '@/views/layouts/BaseLayout.vue';
 //
-import Password from 'primevue/Password';
-import InputText from 'primevue/InputText';
-import Button from 'primevue/Button';
-import Message from 'primevue/Message';
+import Password from 'primevue/password';
+import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
+import Message from 'primevue/message';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({

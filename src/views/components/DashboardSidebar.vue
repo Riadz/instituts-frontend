@@ -40,8 +40,8 @@
 </style>
 
 <script>
-import Button from 'primevue/Button';
-import Menu from 'primevue/Menu';
+import Button from 'primevue/button';
+import Menu from 'primevue/menu';
 import { useRouter } from 'vue-router';
 export default {
   components: {

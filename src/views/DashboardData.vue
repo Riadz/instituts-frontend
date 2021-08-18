@@ -63,8 +63,8 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import DashboardLayout from '@/views/layouts/DashboardLayout.vue';
 import EntryData from '@/services/models/EntryData';
-import TabView from 'primevue/TabView';
-import TabPanel from 'primevue/TabPanel';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 
 export default defineComponent({
   components: {

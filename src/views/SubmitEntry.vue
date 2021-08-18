@@ -2,7 +2,7 @@
   <base-layout mainClass="login">
     <div class="wrapper">
       <Form
-        v-if="!submitted"
+        v-if="!submit  ted"
         @submit="handleSubmit"
         :validation-schema="schema"
         class="container p-fluid my-6 mx-2"
@@ -166,13 +166,13 @@ import Specialty from '@/services/models/Specialty';
 import Formation from '@/services/models/Formation';
 import BaseLayout from '@/views/layouts/BaseLayout.vue';
 //
-import Carousel from 'primevue/Carousel';
-import InputText from 'primevue/InputText';
-import InputNumber from 'primevue/InputNumber';
-import Textarea from 'primevue/Textarea';
-import Button from 'primevue/Button';
-import Message from 'primevue/Message';
-import Dropdown from 'primevue/Dropdown';
+import Carousel from 'primevue/carousel';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import Textarea from 'primevue/textarea';
+import Button from 'primevue/button';
+import Message from 'primevue/message';
+import Dropdown from 'primevue/dropdown';
 import Entry from '@/services/models/Entry';
 
 export default defineComponent({

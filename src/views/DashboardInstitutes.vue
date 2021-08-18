@@ -37,11 +37,7 @@
       <Column field="pin_code" header="Code"></Column>
       <Column header="Action">
         <template #body="item">
-          <Button
-            icon="pi pi-cog"
-            class="p-button-success"
-            @click="openEditDialog(item.data)"
-          ></Button>
+          <Button icon="pi pi-cog" class="p-button-success" @click="openEditDialog(item.data)"></Button>
         </template>
       </Column>
     </DataTable>
@@ -89,9 +85,7 @@
           placeholder="Selectioner la wilaya"
           filter
         >
-          <template #option="state">
-            {{ state.option.code }} - {{ state.option.name }}
-          </template>
+          <template #option="state">{{ state.option.code }} - {{ state.option.name }}</template>
         </Dropdown>
       </div>
       <div class="p-formgrid grid">
@@ -154,18 +148,18 @@ import Institute from '@/services/models/Institute';
 import CountryState from '@/services/models/CountryState';
 //
 import { useConfirm } from 'primevue/useconfirm';
-import Button from 'primevue/Button';
-import Toolbar from 'primevue/Toolbar';
+import Button from 'primevue/button';
+import Toolbar from 'primevue/toolbar';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ConfirmPopup from 'primevue/confirmpopup';
-import Dialog from 'primevue/Dialog';
-import InputText from 'primevue/InputText';
-import InputNumber from 'primevue/InputNumber';
-import RadioButton from 'primevue/RadioButton';
-import Textarea from 'primevue/Textarea';
-import Dropdown from 'primevue/Dropdown';
-import Chips from 'primevue/Chips';
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import RadioButton from 'primevue/radiobutton';
+import Textarea from 'primevue/textarea';
+import Dropdown from 'primevue/dropdown';
+import Chips from 'primevue/chips';
 
 export default defineComponent({
   components: {
